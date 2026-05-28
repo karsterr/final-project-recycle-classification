@@ -3,7 +3,7 @@ from PIL import Image
 from classifier import WasteClassifier
 
 # --- MODEL KONFİGÜRASYONLARI (Notebook Analiz Sonuçları) ---
-MODEL_PATH = "model/akilli_kutu_model.keras"  # İndirdiğin dosya adını buraya yazıyorsun
+MODEL_PATH = "model/akilli_kutu_model.keras"  
 
 # Klasörlerin alfabetik dizilimine sadık kalınmış Türkçe karşılıklar:
 # ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
@@ -23,7 +23,7 @@ def main():
     st.markdown("Eğitilen **MobileNetV2** modelini kullanarak atık türünü gerçek zamanlı tespit edin.")
     st.write("---")
 
-    # Modeli güvenli şekilde ayağa kaldırıyoruz
+    
     try:
         classifier = load_cached_classifier()
     except Exception as e:
