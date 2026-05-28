@@ -9,6 +9,10 @@ Bu proje, kapalı ve siyah hazneli bir geri dönüşüm kutusunda atıkları oto
 - MobileNetV2 tabanlı transfer öğrenme + fine-tuning
 - Eğitim sonunda **~%93** doğruluk bandı
 
+## Canlı Demo
+Streamlit Community Cloud üzerinde canlı çalışan uygulama:
+https://final-project-recycle-classification-p7qvxat9uoyxzkzjazn5ib.streamlit.app/
+
 ## Veri Seti
 Veriler üç kaynaktan toplanmıştır:
 1. Google Drive üzerinden sınıfın derlediği yerel veri seti
@@ -54,16 +58,21 @@ pip install -q "numpy<2" "scipy<1.13" rembg kagglehub onnxruntime
 ## Streamlit Deployment (Community Cloud)
 Bu proje Streamlit Community Cloud üzerinde doğrudan çalıştırılabilir. GitHub Pages statik olduğu için Streamlit uygulamasını barındıramaz.
 
-1. `akilli_kutu_model.keras` dosyasını repo köküne veya `model/` klasörüne koyun.
+1. `akilli_kutu_model.keras` dosyasını `model/` klasörüne (veya repo köküne) koyun.
 2. Streamlit Cloud’da yeni uygulama oluşturup ana dosya olarak `app.py` seçin.
 3. `requirements.txt` ve `runtime.txt` dosyaları üzerinden bağımlılıklar ve Python sürümü otomatik kurulacaktır (TensorFlow 2.16.x ve Python 3.11 kullanılmaktadır).
 
 ## Proje Yapısı
 ```
 .
-├─ akilli_kutu_model.keras
+├─ app.py
+├─ classifier.py
 ├─ dataset/
+├─ model/
+│  └─ akilli_kutu_model.keras
 ├─ final_project_recyle.ipynb
+├─ requirements.txt
+├─ runtime.txt
 ├─ README.md
 ├─ LICENSE
 └─ CONTRIBUTING.md
@@ -72,8 +81,8 @@ Bu proje Streamlit Community Cloud üzerinde doğrudan çalıştırılabilir. Gi
 ## Katkı ve Roller
 - Veri seti derleme: sınıf katkısı (Google Drive)
 - Ek Kaggle veri seti desteği: **Mehmet Yıldız**
-- Model geliştirme ve deployment: **Efe Can Kara**
-- Gelecekteki Streamlit arayüzü: **Yiğit Altundağ**
+- Model geliştirme ve eğitim: **Efe Can Kara**
+- Streamlit arayüzü ve deployment: **Yiğit Altundağ**
 
 ## Lisans
 MIT lisansı altında yayımlanmıştır. Ayrıntılar için `LICENSE` dosyasına bakın.
