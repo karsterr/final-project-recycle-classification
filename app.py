@@ -1,9 +1,26 @@
+from pathlib import Path
+import zipfile
 import streamlit as st
 from PIL import Image
 from classifier import WasteClassifier
 
 # --- MODEL KONFİGÜRASYONLARI (Notebook Analiz Sonuçları) ---
-MODEL_PATH = "model/akilli_kutu_model.keras"  
+APP_DIR = Path(__file__).resolve().parent
+MODEL_CANDIDATES = [
+    APP_DIR / "model" / "akilli_kutu_model.keras",
+    APP_DIR / "akilli_kutu_model.keras",
+]
+
+def resolve_model_path() -> Path:
+    for candidate in MODEL_CANDIDATES:
+        if candidate.is_file() and zipfile.is_zipfile(candidate):
+            return candidate
+    for candidate in MODEL_CANDIDATES:
+        if candidate.is_file():
+            return candidate
+    return MODEL_CANDIDATES[0]
+
+MODEL_PATH = resolve_model_path()
 
 # Klasörlerin alfabetik dizilimine sadık kalınmış Türkçe karşılıklar:
 # ['cardboard', 'glass', 'metal', 'paper', 'plastic', 'trash']
@@ -13,7 +30,7 @@ TARGET_SIZE = (224, 224)
 # Her etkileşimde modelin sıfırdan yüklenip sistemi dondurmaması için cache yapısı kullanıyoruz
 @st.cache_resource
 def load_cached_classifier():
-    return WasteClassifier(model_path=MODEL_PATH, class_names=CLASSES, target_size=TARGET_SIZE)
+    return WasteClassifier(model_path=str(MODEL_PATH), class_names=CLASSES, target_size=TARGET_SIZE)
 
 
 def main():
