@@ -56,7 +56,7 @@ Bu proje Streamlit Community Cloud üzerinde doğrudan çalıştırılabilir. Gi
 
 1. `akilli_kutu_model.keras` dosyasını repo köküne veya `model/` klasörüne koyun.
 2. Streamlit Cloud’da yeni uygulama oluşturup ana dosya olarak `app.py` seçin.
-3. `requirements.txt` ve `runtime.txt` dosyaları üzerinden bağımlılıklar ve Python sürümü otomatik kurulacaktır.
+3. `requirements.txt` ve `runtime.txt` dosyaları üzerinden bağımlılıklar ve Python sürümü otomatik kurulacaktır (TensorFlow için Python 3.11 sabitlenmiştir).
 
 ## Proje Yapısı
 ```
