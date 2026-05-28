@@ -38,14 +38,14 @@ def main():
         # Görseli RAM'e alıyoruz
         image = Image.open(uploaded_file)
         
-        # UI Düzeni: İki sütun (Solda resim, sağda analiz)
+        
         col1, col2 = st.columns(2)
         
         with col1:
             st.image(image, caption="Yüklenen Nesne", use_container_width=True)
             
         with col2:
-            st.subheader("🤖 Yapay Zeka Analizi")
+            st.subheader("Model Analizi")
             
             with st.spinner("Model tahmin yürütüyor..."):
                 try:
