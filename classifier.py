@@ -3,8 +3,8 @@ from abc import ABC, abstractmethod
 from PIL import Image
 import tensorflow as tf
 
-# --- SOLID: Dependency Inversion Principle ---
-# Yarın bir gün ONNX veya PyTorch'a geçmek istersen arayüze dokunmaz, sadece yeni bir class yazarsın.
+
+
 class BaseClassifier(ABC):
     @abstractmethod
     def load_model(self, model_path: str) -> None:
@@ -18,7 +18,7 @@ class BaseClassifier(ABC):
         processed_img = self._preprocess_image(image)
         predictions = self.model.predict(processed_img)
         
-        # --- DÜZELTME: Ekstra softmax'i sildik, direkt gelen tahmini okuyoruz ---
+        
         best_class_idx = np.argmax(predictions[0])
         
         predicted_class = self.class_names[best_class_idx]
@@ -36,7 +36,7 @@ class WasteClassifier(BaseClassifier):
         self.target_size = target_size
         self.model = None
         
-        # Nesne yaratılır yaratılmaz model yüklenir (Sorumluluk Ayrımı)
+       
         self.load_model(self.model_path)
 
     def load_model(self, model_path: str) -> None:
@@ -45,15 +45,15 @@ class WasteClassifier(BaseClassifier):
         except Exception as e:
             raise RuntimeError(f"Model yüklenirken hata oluştu: {e}")
 
-    # --- SOLID: Single Responsibility Principle ---
-    # Görüntü ön işleme adımları tamamen bu metodun sorumluluğundadır.
+    
+    # Görüntü ön işleme adımları
     def _preprocess_image(self, image: Image.Image) -> np.ndarray:
         """Görüntüyü MobileNetV2 girdisine ve notebook'taki ön işleme adımlarına hazırlar."""
         # Eğer görsel PNG formatında ve saydam arka planlıysa, RGB'ye dönüştürerek alpha kanalını eliyoruz
         if image.mode != "RGB":
             image = image.convert("RGB")
             
-        # Görseli modelin eğitim boyutu olan 224x224'e getiriyoruz
+        # Görseli modelin eğitim boyutu olan 224x224'e ayarladık
         image = image.resize(self.target_size)
         img_array = tf.keras.preprocessing.image.img_to_array(image)
         
