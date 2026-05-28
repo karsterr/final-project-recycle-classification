@@ -51,6 +51,13 @@ pip install -q "numpy<2" "scipy<1.13" rembg kagglehub onnxruntime
 2. Drive veri seti yolu (`drive_dataset_path`) ve Kaggle indirme adımlarını çalıştırın.
 3. Hücreleri sırayla çalıştırarak master dataset oluşturun, eğitimi başlatın ve modeli dışa aktarın.
 
+## Streamlit Deployment (Community Cloud)
+Bu proje Streamlit Community Cloud üzerinde doğrudan çalıştırılabilir. GitHub Pages statik olduğu için Streamlit uygulamasını barındıramaz.
+
+1. `akilli_kutu_model.keras` dosyasını repo köküne veya `model/` klasörüne koyun.
+2. Streamlit Cloud’da yeni uygulama oluşturup ana dosya olarak `app.py` seçin.
+3. `requirements.txt` ve `runtime.txt` dosyaları üzerinden bağımlılıklar ve Python sürümü otomatik kurulacaktır.
+
 ## Proje Yapısı
 ```
 .
